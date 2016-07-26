@@ -1,0 +1,2 @@
+GET /          controllers.Application.index
+GET /get/:hash controllers.HashStore.getFiles(hash: Long)
