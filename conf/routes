@@ -1,2 +1,20 @@
-GET /          controllers.Application.index
-GET /get/:hash controllers.HashStore.getFiles(hash: Long)
+###
+# summary: swagger definition
+# description: for swagger UI to consume
+###
+GET /docs/swagger.json        @controllers.ApiSpecs.specs
+
+### NoDocs ###
+GET /docs/swagger-ui/*file    controllers.Assets.at(path:String="/public/lib/swagger-ui", file:String)
+
+GET /                         controllers.Application.index
+
+###
+#  summary: get files by FC hash
+#  responses:
+#    200:
+#      description: success
+#      schema:
+#        $ref: '#/definitions/models.File'
+###
+GET /get/:hash                controllers.HashStore.getFiles(hash: Long)
