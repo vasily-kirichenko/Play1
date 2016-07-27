@@ -8,7 +8,7 @@ import scala.concurrent.Future
 
 class ApiSpecs extends Controller {
   implicit val cl = getClass.getClassLoader
-  private lazy val generator = SwaggerSpecGenerator("controllers")
+  private lazy val generator = SwaggerSpecGenerator("controllers", "models")
 
   def specs = Action.async { _ =>
     Future.fromTry(generator.generate()).map(Ok(_))
