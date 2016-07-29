@@ -4,10 +4,10 @@
     title: "False Catcher"
     description: "False Catcher"
     version: "1.0.0"
+  #host: wl-legio-47.avp.ru:9000
   host: localhost:9000
   schemes:
     - "http"
-    - "https"
   consumes:
     - application/json
   produces:
