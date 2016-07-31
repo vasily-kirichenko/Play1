@@ -4,7 +4,13 @@ version := "1.0"
 
 scalaVersion := "2.11.8"
 
-lazy val root = (project in file(".")).enablePlugins(PlayScala, DockerPlugin)
+lazy val root =
+  (project in file("."))
+    .enablePlugins(PlayScala, DockerPlugin)
+    //.dependsOn(macros)
+
+//lazy val scalaReflect = Def.setting { "org.scala-lang" % "scala-reflect" % scalaVersion.value }
+//lazy val macros = (project in file("macros")).settings(libraryDependencies += scalaReflect.value)
 
 resolvers += Resolver.jcenterRepo
 

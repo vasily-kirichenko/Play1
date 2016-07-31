@@ -13,5 +13,6 @@ class HashStore extends Controller {
     val f3 = File("02030405060708090A0B0C0D0E0F101112131415")
 
     Ok(Json.toJson(Array(f1, f2, f3)))
+    //Ok(Desugar.desugar(List(1, 2, 3).reverse).toString)
   }
 }

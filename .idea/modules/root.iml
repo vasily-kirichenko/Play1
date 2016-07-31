@@ -20,6 +20,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../../target/scala-2.11/resource_managed/test" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../target" />
+      <excludeFolder url="file://$MODULE_DIR$/../../target/browse-dependency-graph" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/docker" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/resolution-cache" />
       <excludeFolder url="file://$MODULE_DIR$/../../target/streams" />
@@ -31,7 +32,6 @@
     <orderEntry type="library" name="SBT: aopalliance:aopalliance:1.0:jar" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.21:jar" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:log4j-over-slf4j:1.7.21:jar" level="project" />
-    <orderEntry type="library" name="SBT: com.google.guava:guava:18.0:jar" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.11.8:jar" level="project" />
     <orderEntry type="library" name="SBT: io.dropwizard.metrics:metrics-core:3.1.2:jar" level="project" />
     <orderEntry type="library" name="SBT: com.websudos:phantom-dsl_2.11:1.27.0:jar" level="project" />
@@ -45,14 +45,12 @@
     <orderEntry type="library" name="SBT: com.typesafe.play:routes-compiler_2.11:2.5.4:jar" level="project" />
     <orderEntry type="library" name="SBT: com.iheart:play-swagger_2.11:0.3.3-PLAY2.5:jar" level="project" />
     <orderEntry type="library" name="SBT: com.google.guava:guava:16.0.1:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: junit:junit:4.11:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: cglib:cglib-nodep:2.1_3:jar" level="project" />
     <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.1.7:jar" level="project" />
     <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.1.7:jar" level="project" />
     <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-annotations:2.7.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-core:2.7.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.fasterxml.jackson.core:jackson-databind:2.7.1:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: commons-io:commons-io:2.4:jar" level="project" />
     <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.7.1:jar" level="project" />
     <orderEntry type="library" name="SBT: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: com.google.code.findbugs:jsr305:3.0.1:jar" level="project" />
@@ -150,6 +148,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="SBT: commons-io:commons-io:2.4:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: com.google.guava:guava:18.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: com.google.guava:guava:19.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: junit:junit:4.12:jar" level="project" />
   </component>
 </module>

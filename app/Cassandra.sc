@@ -22,8 +22,9 @@ object Hex {
     buff
   }
 }
+// Seq("10.70.16.76", "10.70.16.77")
 
-val connector = ContactPoints(Seq("10.70.16.76", "10.70.16.77"), 9042)
+val connector = ContactPoints(Seq("localhost"), 9042)
   .withClusterBuilder(
     _.withSocketOptions(new SocketOptions().setConnectTimeoutMillis(10000)))
   .noHeartbeat
