@@ -1,18 +1,34 @@
 package controllers
 
-import models.File
-import models.File._
-import play.api.libs.json._
+import java.nio.ByteBuffer
+
+import cassandra._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.json.Json
 import play.api.mvc._
 import utils.Implicits._
 
-class HashStore extends Controller {
-  def getFiles(hash: Long) = Action {
-    val f1 = File("000102030405060708090A0B0C0D0E0F10111213")
-    val f2 = File("0102030405060708090A0B0C0D0E0F1011121314")
-    val f3 = File("02030405060708090A0B0C0D0E0F101112131415")
+import scala.concurrent.Future
+import scalaz.Scalaz._
+import scalaz._
 
-    Ok(Json.toJson(Array(f1, f2, f3)))
-    //Ok(Desugar.desugar(List(1, 2, 3).reverse).toString)
+object HashStore {
+  val fcdb = new Fcdb() with ApplicationCassandraConfig
+}
+
+class HashStore extends Controller {
+  def getFiles(sha256: String) = Action.async {
+    import models.File._
+
+    val buff = EitherT.fromTryCatchThrowable[Future, ByteBuffer, Throwable](Future { sha256 : ByteBuffer })
+    buff
+      .flatMap { sha256 => HashStore.fcdb.Db.file.getFileBySha256(sha256) }
+      .run
+      .map {
+        case \/-(Some(file)) =>
+          Ok(Json toJson models.File(file.sha256.array))
+        case \/-(None) => NotFound
+        case -\/(exn) => InternalServerError
+      }
   }
 }

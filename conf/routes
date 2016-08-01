@@ -15,4 +15,4 @@ GET /docs/swagger-ui/*file    controllers.Assets.at(path:String="/public/lib/swa
 #      schema:
 #        $ref: '#/definitions/models.File'
 ###
-GET /get/:hash                controllers.HashStore.getFiles(hash: Long)
+GET /get/:hash                controllers.HashStore.getFiles(hash: String)

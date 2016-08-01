@@ -5,7 +5,6 @@ import com.websudos.phantom.connectors.ContactPoints
 import com.websudos.phantom.dsl._
 import scala.concurrent._
 import scala.concurrent.duration._
-import scala.util.{Failure, Success}
 
 object Hex {
   def arrayToHexString(buf: Array[Byte]): String = buf.map("%02X" format _).mkString
