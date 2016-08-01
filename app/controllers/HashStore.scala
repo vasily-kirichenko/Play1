@@ -12,9 +12,7 @@ import scala.concurrent.Future
 import scalaz.Scalaz._
 import scalaz._
 
-object HashStore {
-  val fcdb = new Fcdb() with ApplicationCassandraConfig
-}
+object Db extends Fcdb with ApplicationCassandraConfig
 
 class HashStore extends Controller {
   def getFiles(sha256: String) = Action.async {
@@ -22,11 +20,10 @@ class HashStore extends Controller {
 
     val buff = EitherT.fromTryCatchThrowable[Future, ByteBuffer, Throwable](Future { sha256 : ByteBuffer })
     buff
-      .flatMap { sha256 => HashStore.fcdb.Db.file.getFileBySha256(sha256) }
+      .flatMap { sha256 => Db.Instance.file.getFileBySha256(sha256) }
       .run
       .map {
-        case \/-(Some(file)) =>
-          Ok(Json toJson models.File(file.sha256.array))
+        case \/-(Some(file)) => Ok(Json toJson models.File(file.sha256.array))
         case \/-(None) => NotFound
         case -\/(exn) => InternalServerError
       }

@@ -1,6 +1,7 @@
 package utils
 
 import java.nio.ByteBuffer
+
 import scala.concurrent.{ExecutionContext, Future}
 import scalaz.Applicative
 import language.implicitConversions
@@ -13,5 +14,9 @@ object Implicits {
     def point[A](a: => A) = Future(a)
     def ap[A, B](fa: => Future[A])(f: => Future[A => B]) =
       (f zip fa) map { case (f1, a1) => f1(a1) }
+  }
+
+  implicit class ByteArrayOps(a: Array[Byte]) {
+    def toHex: String = Hex.arrayToHexString(a)
   }
 }

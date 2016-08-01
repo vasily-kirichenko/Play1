@@ -3,11 +3,9 @@ package cassandra
 import java.nio._
 import com.datastax.driver.core.SocketOptions
 import com.websudos.phantom.connectors.ContactPoints
-import utils._
 import utils.Implicits._
 import concurrent._
 import scalaz._
-//import concurrent.ExecutionContext.Implicits.global
 import com.websudos.phantom.dsl._
 
 trait CassandraConfig {
@@ -30,32 +28,21 @@ trait Fcdb extends CassandraConfig {
   }
 
   case class File(sha256: ByteBuffer, md5: ByteBuffer, sha1: ByteBuffer, zone: Short) {
-    override def toString: String = {
-      def buffToStr(buff: ByteBuffer) = Hex.arrayToHexString(buff.array)
-      s"""sha256 = ${buffToStr(sha256)}, sha1 = ${buffToStr(sha1)}, md5 = ${buffToStr(md5)}, zone = $zone"""
-    }
+    override def toString: String =
+      s"""sha256 = ${sha256.array.toHex},
+         |sha1 = ${sha1.array.toHex},
+         |md5 = ${md5.array.toHex},
+         |zone = $zone""".stripMargin
   }
 
-  lazy val connector = ContactPoints(hosts, 9042)
-    .withClusterBuilder(_.withSocketOptions(new SocketOptions().setConnectTimeoutMillis(10000)))
+  private lazy val connector = ContactPoints(hosts, 9042)
+    .withClusterBuilder(_.withSocketOptions(new SocketOptions() setConnectTimeoutMillis 10000))
     .noHeartbeat
     .keySpace(keySpace)
 
-  object Db extends Database(connector) {
+  object Instance extends Database(connector) {
     object file extends ConcreteFiles with connector.Connector
   }
-
-  //val sha256 = ByteBuffer.wrap(Hex.hexStringToByteArray("bff6fe8af3bd9412cdc2e8d2d2043add134fe133a6d8dcc22f8028b144656e8c"))
-  //
-  //val res =
-  //Await.result(
-  //KlSrlDb.file.getFileBySha256(sha256),
-  //5 seconds)
-  //
-  //res match {
-  //  case Some(file) => s"found: ${file.toString}"
-  //  case None => "file was not found"
-  //}
 }
 
 trait ApplicationCassandraConfig extends CassandraConfig {
@@ -64,6 +51,6 @@ trait ApplicationCassandraConfig extends CassandraConfig {
 
   private val config = ConfigFactory.load()
 
-  val hosts: List[String] = config.getStringList("cassandra.hosts").toList
-  val keySpace: String = config.getString("cassandra.keyspace")
+  val hosts: List[String] = config getStringList "cassandra.hosts" toList
+  val keySpace: String = config getString "cassandra.keyspace"
 }
