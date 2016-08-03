@@ -7,6 +7,7 @@ import utils.Implicits._
 import concurrent._
 import scalaz._
 import com.websudos.phantom.dsl._
+import language.postfixOps
 
 trait CassandraConfig {
   val hosts: List[String]

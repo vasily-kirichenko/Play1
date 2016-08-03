@@ -1,8 +1,7 @@
 name := "Play1"
-
 version := "1.0"
-
 scalaVersion := "2.11.8"
+scalacOptions += "-feature"
 
 lazy val root =
   (project in file("."))
@@ -24,7 +23,7 @@ resolvers ++= Seq(
 
 libraryDependencies += "org.scala-lang" % "scala-library" % "2.11.8"
 libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.11.8"
-libraryDependencies +=  "com.iheart" %% "play-swagger" % "0.3.3-PLAY2.5"
+libraryDependencies += "com.iheart" %% "play-swagger" % "0.3.3-PLAY2.5"
 libraryDependencies += "org.webjars" % "swagger-ui" % "2.1.4"
 libraryDependencies += "com.websudos"  %% "phantom-dsl" % "1.27.0"
 libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.4"
